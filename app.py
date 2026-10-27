@@ -18,7 +18,7 @@ st.set_page_config(
 
 PROGRESS_FILE = "progreso_estudiante.json"
 
-# Mobile-Friendly Custom Styles
+# Custom CSS for Mobile and Desktop
 st.markdown("""
 <style>
     .reportview-container .main .block-container {
@@ -50,11 +50,11 @@ st.markdown("""
         border-left: 5px solid #16A34A;
         padding: 16px;
         border-radius: 10px;
-        font-size: 1.05rem;
-        line-height: 1.65;
+        font-size: 1.02rem;
+        line-height: 1.6;
         color: #1F2937;
         margin-bottom: 20px;
-        max-height: 300px;
+        max-height: 280px;
         overflow-y: auto;
     }
     
@@ -72,18 +72,18 @@ st.markdown("""
         background-color: #FEF3C7;
         color: #B45309;
         font-weight: bold;
-        font-size: 1.2rem;
-        padding: 8px 16px;
+        font-size: 1.1rem;
+        padding: 6px 14px;
         border-radius: 20px;
         border: 1px solid #F59E0B;
         display: inline-block;
     }
     
-    .tao-box {
-        background-color: #F3F4F6;
-        padding: 12px;
-        border-radius: 10px;
-        border: 1px solid #D1D5DB;
+    div.row-widget.stRadio > div {
+        background-color: #F9FAFB;
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid #E5E7EB;
         margin-bottom: 15px;
     }
 </style>
@@ -166,9 +166,9 @@ def generate_abstract_rotation_png():
         "id": f"abs_rot_{random.randint(1000,9999)}",
         "type": "abstract",
         "difficulty": "Medium",
-        "question": f"Which option (A, B, C, D, or E) logically completes the 5th frame in the sequence?",
+        "question": f"Which option (Option A, B, C, D, or E) logically completes the 5th frame in the sequence?",
         "options": [f"Option {l}" for l in labels],
-        "correct": labels[correct_opt_idx],
+        "correct": f"Option {labels[correct_opt_idx]}",
         "img_bytes": buf.getvalue(),
         "explanation": expl
     }
@@ -234,9 +234,9 @@ def generate_abstract_side_progression_png():
         "id": f"abs_sides_{random.randint(1000,9999)}",
         "type": "abstract",
         "difficulty": "Easy",
-        "question": f"Which option (A, B, C, D, or E) logically completes the 5th frame in the sequence?",
+        "question": f"Which option (Option A, B, C, D, or E) logically completes the 5th frame in the sequence?",
         "options": [f"Option {l}" for l in labels],
-        "correct": labels[correct_opt_idx],
+        "correct": f"Option {labels[correct_opt_idx]}",
         "img_bytes": buf.getvalue(),
         "explanation": expl
     }
@@ -316,239 +316,220 @@ def generate_abstract_grid_shift_png():
         "id": f"abs_grid_{random.randint(1000,9999)}",
         "type": "abstract",
         "difficulty": "Hard",
-        "question": f"Which option (A, B, C, D, or E) logically completes the 5th frame in the sequence?",
+        "question": f"Which option (Option A, B, C, D, or E) logically completes the 5th frame in the sequence?",
         "options": [f"Option {l}" for l in labels],
-        "correct": labels[correct_opt_idx],
+        "correct": f"Option {labels[correct_opt_idx]}",
         "img_bytes": buf.getvalue(),
         "explanation": expl
     }
 
-VERBAL_BANK = [
-    {
-        "id": "v_searle_chinese",
-        "type": "verbal",
-        "difficulty": "Medium",
-        "passage": "John Searle's Chinese Room argument challenges Strong Artificial Intelligence by maintaining that syntactic symbol manipulation does not constitute semantic understanding [dc178c12-a0ec-4973-a0eb-5e21ab074340.pdf]. Imagine a non-Chinese speaker in a sealed room manipulating Chinese characters according to an English rulebook [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. The person produces responses indistinguishable from a native speaker, yet understands no Chinese [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. The 'Systems Reply' concedes the operator lacks understanding but asserts that understanding belongs to the entire system (operator, rules, data) [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. Searle rebuts that if the operator internalizes the whole system, understanding remains absent [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf].",
-        "question": "Which statement correctly synthesizes the Systems Reply and Searle's counter-argument?",
-        "options": [
-            "A) The Systems Reply claims understanding emerges at the system level; Searle rebuts that internalizing the system yields no true semantics.",
-            "B) The Systems Reply claims the operator understands in isolation; Searle agrees the total system achieves consciousness.",
-            "C) The Systems Reply denies translation is possible; Searle proves syntax eventually generates semantics.",
-            "D) Both parties agree that simulating neural processes is identical to abstract symbol manipulation."
-        ],
-        "correct": "A",
-        "explanation": "The Systems Reply posits that comprehension is a property of the total system rather than the human operator [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. Searle counters that even if the human memorizes and internalizes every rule and dataset of the system, the person is still executing pure syntactic manipulation without grasping semantic meaning [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]."
-    },
-    {
-        "id": "v_godel_incompleteness",
-        "type": "verbal",
-        "difficulty": "Hard",
-        "passage": "Kurt Gödel's incompleteness theorems (1931) fundamentally reshaped mathematical logic [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. The First Theorem proves that any consistent formal system capable of expressing basic arithmetic contains propositions that are true but unprovable within the system [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. The Second Theorem demonstrates that such a system cannot prove its own consistency [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. These conclusions dismantled Hilbert's formalist program, which sought to establish mathematics on a complete and provably consistent axiomatic foundation [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf].",
-        "question": "According to the passage, what direct implication do Gödel's theorems have for mathematical axiomatization?",
-        "options": [
-            "A) They prove that mathematics is inherently self-contradictory across all axiomatic domains.",
-            "B) They demonstrate that in sufficiently rich formal systems, true statements exist that cannot be derived logically.",
-            "C) They strengthen Hilbert's program by showing self-reference prevents contradiction.",
-            "D) They show that first-order logic can verify its own consistency if prime numbers are excluded."
-        ],
-        "correct": "B",
-        "explanation": "Gödel's First Theorem establishes that in any consistent formal system expressing basic arithmetic, there are true mathematical statements that evade derivation through the system's formal rules [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]."
-    },
-    {
-        "id": "v_wittgenstein_private",
-        "type": "verbal",
-        "difficulty": "Medium",
-        "passage": "Wittgenstein's Private Language Argument holds that a language whose terms refer to inner sensations accessible solely to the speaker is logically impossible [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. In a private language, correctness would depend solely on the speaker's subjective impression, dissolving the distinction between following a rule correctly and merely believing one is following it [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. Consequently, mental concepts require publicly observable criteria to possess meaning [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf].",
-        "question": "Why is a private language logically untenable according to Wittgenstein's analysis?",
-        "options": [
-            "A) Because human beings cannot share identical physical sensations.",
-            "B) Because without an independent external standard, the concept of rule-following correctness dissolves.",
-            "C) Because subjective sensations of pain or pleasure do not exist in objective reality.",
-            "D) Because natural grammar is acquired exclusively through behavioral mimicry."
-        ],
-        "correct": "B",
-        "explanation": "Without public, independent criteria of correctness, a speaker has no objective way to distinguish between correctly applying a word and merely thinking they are doing so, destroying linguistic normativity [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]."
-    },
-    {
-        "id": "v_banach_tarski",
-        "type": "verbal",
-        "difficulty": "Hard",
-        "passage": "The Banach-Tarski paradox states that a solid 3D ball can be decomposed into a finite number of non-overlapping pieces, which can then be reassembled via rigid motions to form two identical copies of the original ball [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. This does not violate physical conservation laws because the pieces involved are non-measurable sets lacking a defined volume, whose existence depends on the Axiom of Choice [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. The result highlights the counter-intuitive consequences of admitting non-constructive sets in measure theory [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf].",
-        "question": "What mathematical factor resolves the apparent contradiction of the Banach-Tarski paradox?",
-        "options": [
-            "A) Direct violation of physical mass conservation in solid matter.",
-            "B) Division of the sphere into infinitesimally small atomic particles.",
-            "C) The employment of non-measurable sets that lack a well-defined volume under the Axiom of Choice.",
-            "D) The false assumption that the sphere's pieces are rigid solids."
-        ],
-        "correct": "C",
-        "explanation": "The paradox operates purely in theoretical set theory using non-measurable sets that do not possess a standard geometric volume, enabled by the Axiom of Choice [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]."
-    },
-    {
-        "id": "v_popper_tolerance",
-        "type": "verbal",
-        "difficulty": "Easy",
-        "passage": "Karl Popper's Paradox of Tolerance posits that if a society practices unlimited tolerance, its ability to remain tolerant will eventually be destroyed by the intolerant [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. Popper did not advocate suppressing intolerant ideas immediately (preferring rational debate and public opinion), but maintained that society must claim the right to suppress intolerance when the intolerant refuse rational discourse and resort to force [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf].",
-        "question": "According to the passage, when is society justified in withholding tolerance from the intolerant?",
-        "options": [
-            "A) As soon as intolerant opinions cause offense to minority communities.",
-            "B) Only when the intolerant abandon rational debate and engage in force or violence.",
-            "C) Whenever intolerant views influence democratic election outcomes.",
-            "D) Popper asserts intolerance is never justified under any circumstances."
-        ],
-        "correct": "B",
-        "explanation": "Popper sets a specific threshold: tolerance should be extended to debate, but society reserves the right to suppress intolerance when intolerant actors reject reason and rely on violence or force [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]."
-    },
-    {
-        "id": "v_coase_theorem",
-        "type": "verbal",
-        "difficulty": "Medium",
-        "passage": "The Coase Theorem states that if property rights are well-defined and transaction costs are zero, private bargaining will lead to an efficient allocation of resources regardless of initial property distribution [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. However, in real-world markets, transaction costs that hinder private bargaining are pervasive [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. Thus, Coase's work is not an argument for naive laissez-faire, but a framework to analyze how institutional costs shape market outcomes [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf].",
-        "question": "What real-world factor restricts the direct application of the Coase Theorem's efficiency prediction?",
-        "options": [
-            "A) Constant intervention by judicial courts.",
-            "B) The widespread existence of transaction costs that impede private negotiations.",
-            "C) The mathematical impossibility of defining intellectual property rights.",
-            "D) A lack of profit-maximizing behavior among economic agents."
-        ],
-        "correct": "B",
-        "explanation": "In reality, transaction costs are substantial, meaning market transactions cannot automatically resolve externalities without institutional framework considerations [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]."
-    },
-    {
-        "id": "v_frame_problem",
-        "type": "verbal",
-        "difficulty": "Hard",
-        "passage": "The Frame Problem in artificial intelligence exposes deep challenges in representing how an intelligent system updates knowledge about a changing world [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. When an action occurs, the system must determine which facts remain unchanged; explicitly listing all unchanged facts is computationally intractable [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. This indicates that intelligence requires default heuristic assumptions regarding relevance rather than pure deductive logic [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf].",
-        "question": "What does the Frame Problem reveal about deductive logic in AI reasoning?",
-        "options": [
-            "A) That formal logic effortlessly represents all real-world environmental changes.",
-            "B) That pure formal deduction without relevance heuristics is computationally intractable for updating real-world states.",
-            "C) That qualification problems ensure action success if environmental variables are ignored.",
-            "D) That human rationality relies exclusively on first-order predicate calculus."
-        ],
-        "correct": "B",
-        "explanation": "Explicitly deducting all unchanged background facts after an action causes computational explosion, demonstrating that intelligence requires heuristic relevance rules rather than exhaustive deduction [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]."
-    },
-    {
-        "id": "v_newcomb_paradox",
-        "type": "verbal",
-        "difficulty": "Hard",
-        "passage": "Newcomb's Paradox pit two standard decision theory principles against each other [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. A highly accurate predictor places 1 million euros in an opaque box if it predicted the agent will take only that box, and 1,000 euros in an open box that the agent can also take [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. The expected utility principle advises taking only the opaque box, while the dominance principle advises taking both boxes [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]. The conflict shows that the principles assume incompatible premises regarding whether choices are causally independent of predetermined states [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf].",
-        "question": "What core assumption is in conflict in Newcomb's Paradox according to the text?",
-        "options": [
-            "A) Pure mathematics versus relativistic physics.",
-            "B) Whether a rational decision can be treated as causally independent of a predetermined world state.",
-            "C) Human intuition versus probability axioms.",
-            "D) Wealth accumulation ethics versus distributive justice."
-        ],
-        "correct": "B",
-        "explanation": "The paradox arises because decision principles conflict on whether the player's choice is causally independent of the predictor's prior state determination [6d3714c8-7fd8-4ebc-b514-7454a608d54f.pdf]."
-    },
-    {
-        "id": "v_peter_principle",
-        "type": "verbal",
-        "difficulty": "Easy",
-        "passage": "In organizational sociology, the Peter Principle states that in a hierarchy, every employee tends to rise to their level of incompetence [dc178c12-a0ec-4973-a0eb-5e21ab074340.pdf]. Promotions are awarded based on success in current roles rather than competence for the new role [dc178c12-a0ec-4973-a0eb-5e21ab074340.pdf]. Consequently, higher positions become filled with individuals who perform poorly, while organizational work is carried out by employees who have not yet reached their limit [dc178c12-a0ec-4973-a0eb-5e21ab074340.pdf].",
-        "question": "What is the central thesis of the Peter Principle?",
-        "options": [
-            "A) Excellent performance guarantees success across all corporate management levels.",
-            "B) Employees are promoted iteratively until they reach a role where they lack competence.",
-            "C) Technical training programs are ineffective in modern firms.",
-            "D) Executive promotions should be decided through democratic voting."
-        ],
-        "correct": "B",
-        "explanation": "The principle highlights that promotion mechanics rely on past success, leading individuals to eventually settle in positions beyond their competence [dc178c12-a0ec-4973-a0eb-5e21ab074340.pdf]."
-    },
-    {
-        "id": "v_bionics_concept",
-        "type": "verbal",
-        "difficulty": "Easy",
-        "passage": "Bionics is the interdisciplinary science of mimicking natural biological mechanisms to design advanced technological and medical devices [dc178c12-a0ec-4973-a0eb-5e21ab074340.pdf]. Neuroscientists note that bionics bridges biological abstraction and engineering solutions, such as neural prosthetics connected directly to the central nervous system [dc178c12-a0ec-4973-a0eb-5e21ab074340.pdf]. By synthesizing biological structures with material science, bionics produces innovative health and industrial designs [dc178c12-a0ec-4973-a0eb-5e21ab074340.pdf].",
-        "question": "Which statement accurately describes the objective of bionics according to the passage?",
-        "options": [
-            "A) Replacing all human organs with purely mechanical devices.",
-            "B) Designing artificial technologies and health solutions by imitating biological structures and mechanisms.",
-            "C) Restricting medical research to archaeological fossil analysis.",
-            "D) Rejecting aesthetic creativity in modern engineering."
-        ],
-        "correct": "B",
-        "explanation": "Bionics explicitly applies biological principles and natural mechanisms to engineering and technological innovations [dc178c12-a0ec-4973-a0eb-5e21ab074340.pdf]."
-    }
-]
-
+# Dynamic Numerical Generators
 def generate_numerical_patents():
-    pop = random.randint(7000, 85000)
-    rate04 = round(random.uniform(250.0, 420.0), 1)
-    rate05 = round(rate04 + random.uniform(5.0, 25.0), 1)
-    target_rate = round(rate05 + random.uniform(80.0, 150.0), 1)
+    pop_ger = random.randint(80000, 83000)
+    pop_swi = random.randint(7200, 7800)
+    rate_ger = round(random.uniform(270.0, 290.0), 1)
+    rate_swi = round(random.uniform(410.0, 430.0), 1)
     
-    diff_rate = round(target_rate - rate05, 1)
-    diff_patents = int(round((pop / 1000.0) * diff_rate))
+    diff_rate = round(rate_swi - rate_ger, 1)
+    extra_needed = int(round((pop_ger / 1000.0) * diff_rate))
     
+    correct_letter = random.choice(['A', 'B', 'C', 'D', 'E'])
+    options_dict = {}
+    letters = ['A', 'B', 'C', 'D', 'E']
+    
+    for l in letters:
+        if l == correct_letter:
+            options_dict[l] = f"{extra_needed:,} patents"
+        else:
+            wrong_val = int(extra_needed * random.choice([0.1, 0.8, 1.25, 10.0]))
+            options_dict[l] = f"{wrong_val:,} patents"
+            
     table_md = f"""
-| Country | Population 2005 (thousands) | Patent Apps per M hab. (2004) | Patent Apps per M hab. (2005) |
-| :--- | :---: | :---: | :---: |
-| **Germany / Benchmark** | {pop:,} | {rate04} | {rate05} |
-| **Switzerland / Target** | 7,441 | 408.4 | {target_rate} |
+| Country | Population (thousands) | Patent Apps per Million Hab. |
+| :--- | :---: | :---: |
+| **Germany** | {pop_ger:,} | {rate_ger} |
+| **Switzerland** | {pop_swi:,} | {rate_swi} |
 """
-    options = [
-        f"A) {diff_patents - 1500:,} patents",
-        f"B) {diff_patents + 2400:,} patents",
-        f"C) {diff_patents - 450:,} patents",
-        f"D) {diff_patents + 850:,} patents",
-        f"E) {diff_patents:,} patents"
-    ]
-    
+    expl = f"""**Step-by-Step Calculation:**
+1. **Per Capita Difference:** Calculate Switzerland rate minus Germany rate:
+   $$\\text{{Diff}} = {rate_swi} - {rate_ger} = {diff_rate} \\text{{ applications per million habitant}}$$
+2. **Total Additional Patents:** Apply difference to Germany population ({pop_ger:,} thousands = {pop_ger/1000:.3f} million):
+   $$\\text{{Extra Patents}} = \\frac{{{pop_ger}}}{{1000}} \\times {diff_rate} = {extra_needed:,} \\text{{ patents}}$$
+Option **{correct_letter}** is correct."""
+
     return {
         "id": f"num_pat_{random.randint(1000,9999)}",
         "type": "numerical",
         "difficulty": "Medium",
         "table": table_md,
-        "question": f"Based on the table, how many additional patent applications would Germany need to file in 2005 to match Switzerland's per capita rate of {target_rate} per million inhabitants?",
-        "options": options,
-        "correct": "E",
-        "explanation": f"**Step-by-Step Calculation:**\n1. **Per Capita Rate Gap:** {target_rate} - {rate05} = **{diff_rate} patent applications per million inhabitants**.\n2. **Population Application:** Germany's population is {pop:,} thousand (or {pop/1000:.3f} million).\n3. **Additional Patents Needed:** ({pop}/1000) × {diff_rate} = **{diff_patents:,} additional patent applications** (Option E)."
+        "question": f"Based on the table, how many additional patent applications would Germany need to match Switzerland's per capita rate?",
+        "options": [f"{l}) {options_dict[l]}" for l in letters],
+        "correct": f"{correct_letter}) {options_dict[correct_letter]}",
+        "explanation": expl
     }
 
 def generate_numerical_palace():
-    visitors = random.randint(120, 280) * 1000
-    fee = round(random.uniform(12.50, 18.50), 2)
-    discount_pct = random.choice([15, 20, 25])
-    discounted_visitors_pct = random.choice([30, 40, 50])
+    annual_visitors = random.randint(1200000, 1600000)
+    avg_ticket = round(random.uniform(12.5, 16.0), 2)
+    total_rev = round(annual_visitors * avg_ticket, 2)
     
-    disc_fee = round(fee * (1 - discount_pct/100.0), 2)
-    full_visitors = int(visitors * (1 - discounted_visitors_pct/100.0))
-    disc_visitors = int(visitors * (discounted_visitors_pct/100.0))
+    letters = ['A', 'B', 'C', 'D', 'E']
+    correct_letter = random.choice(letters)
+    options_dict = {}
     
-    total_rev = round(full_visitors * fee + disc_visitors * disc_fee, 2)
-    
+    for l in letters:
+        if l == correct_letter:
+            options_dict[l] = f"€{total_rev:,.2f}"
+        else:
+            wrong_val = round(total_rev * random.choice([0.7, 0.85, 1.15, 1.3]), 2)
+            options_dict[l] = f"€{wrong_val:,.2f}"
+            
     table_md = f"""
-| Category | Metric Value |
-| :--- | :--- |
-| **Total Annual Visitors** | {visitors:,} visitors |
-| **Standard Entry Fee** | €{fee:.2f} per person |
-| **Discounted Ticket Share** | {discounted_visitors_pct}% of total visitors |
-| **Discount Rate** | {discount_pct}% off standard entry fee |
+| Scenario Metric | Annual Volume | Average Ticket Price |
+| :--- | :---: | :---: |
+| **Royal Palace Monument Visitors** | {annual_visitors:,} visitors | €{avg_ticket:.2f} |
 """
-    options = [
-        f"A) €{total_rev * 1.15:,.2f}",
-        f"B) €{total_rev:,.2f}",
-        f"C) €{total_rev * 0.85:,.2f}",
-        f"D) €{total_rev * 1.08:,.2f}",
-        f"E) €{total_rev * 0.92:,.2f}"
-    ]
-    
+    expl = f"""**Step-by-Step Calculation:**
+1. **Total Revenue:** Multiply Annual Visitors by Average Ticket Price:
+   $$\\text{{Total Revenue}} = {annual_visitors:,} \\times €{avg_ticket:.2f} = €{total_rev:,.2f}$$
+Option **{correct_letter}** is correct."""
+
     return {
         "id": f"num_pal_{random.randint(1000,9999)}",
         "type": "numerical",
         "difficulty": "Easy",
         "table": table_md,
-        "question": "What is the total annual ticket revenue generated by the monument?",
-        "options": options,
-        "correct": "B",
-        "explanation": f"**Step-by-Step Calculation:**\n1. **Full-Price Visitors:** {100-discounted_visitors_pct}% of {visitors:,} = {full_visitors:,} visitors × €{fee:.2f} = **€{full_visitors*fee:,.2f}**.\n2. **Discounted Visitors:** {discounted_visitors_pct}% of {visitors:,} = {disc_visitors:,} visitors × €{disc_fee:.2f} = **€{disc_visitors*disc_fee:,.2f}**.\n3. **Total Revenue:** €{full_visitors*fee:,.2f} + €{disc_visitors*disc_fee:,.2f} = **€{total_rev:,.2f}** (Option B)."
+        "question": f"What is the total annual ticket revenue generated by the monument based on the table?",
+        "options": [f"{l}) {options_dict[l]}" for l in letters],
+        "correct": f"{correct_letter}) {options_dict[correct_letter]}",
+        "explanation": expl
     }
 
+# Expanded Verbal Question Bank in English
+VERBAL_BANK = [
+    {
+        "id": "v_searle_chinese_en",
+        "type": "verbal",
+        "difficulty": "Medium",
+        "passage": "John Searle's Chinese Room argument challenges strong artificial intelligence by holding that syntactic manipulation of symbols does not constitute semantic understanding. Imagine a non-Chinese speaker in a room who manipulates Chinese characters according to a rulebook. He produces answers indistinguishable from a native speaker, yet understands no Chinese. The 'systems reply' concedes the operator lacks understanding, but argues understanding belongs to the entire system (operator, rules, and data). Searle objects that if the operator internalizes the whole system, he still understands no Chinese.",
+        "question": "Which statement accurately summarizes the systems reply and Searle's counter-argument?",
+        "options": [
+            "A) The systems reply claims understanding emerges at the system level; Searle counters that internalizing the system yields no real understanding.",
+            "B) The systems reply holds the operator understands in isolation; Searle agrees the system produces consciousness.",
+            "C) The systems reply denies perfect translation exists; Searle proves syntax eventually generates semantics.",
+            "D) Both parties agree simulating neural processes is identical to abstract symbol manipulation."
+        ],
+        "correct": "A",
+        "explanation": "The systems reply attributes understanding to the total system. Searle refutes this by noting that even if the operator memorizes all rules and data ('internalizes' the system), he performs pure symbol manipulation without grasping semantic meaning."
+    },
+    {
+        "id": "v_godel_incompleteness_en",
+        "type": "verbal",
+        "difficulty": "Hard",
+        "passage": "Kurt Gödel's incompleteness theorems (1931) reshaped mathematical logic. The first theorem proves that any consistent formal system capable of expressing basic arithmetic contains propositions that are true but unprovable within the system. The second theorem demonstrates that such a system cannot prove its own consistency. These findings dismantled Hilbert's formalist program, which sought to ground all mathematics on complete and consistent axiomatic foundations.",
+        "question": "According to the passage, what is a direct implication of Gödel's theorems for mathematical axiomatization?",
+        "options": [
+            "A) They prove mathematics is inherently contradictory at all formal levels.",
+            "B) They imply that in sufficiently rich formal systems, true statements exist that elude logical derivation.",
+            "C) They strengthen Hilbert's formalist program by proving self-reference prevents errors.",
+            "D) They show first-order logic can prove its own consistency if prime numbers are excluded."
+        ],
+        "correct": "B",
+        "explanation": "The first incompleteness theorem directly establishes that in rich consistent formal systems, there are true statements that cannot be proven using the rules of the system itself."
+    },
+    {
+        "id": "v_wittgenstein_private_en",
+        "type": "verbal",
+        "difficulty": "Medium",
+        "passage": "Wittgenstein's private language argument contends that a language whose terms refer exclusively to the speaker's private sensations cannot exist. In a private language, the correctness of a term would depend solely on the speaker's subjective impression, dissolving the distinction between following a rule correctly and merely believing one is following it. Thus, mental concepts require publicly observable criteria.",
+        "question": "Why is a private language logically impossible according to Wittgenstein's analysis?",
+        "options": [
+            "A) Because it is empirically impossible for two human beings to share identical internal sensations.",
+            "B) Because without an independent, public standard of correctness, the concept of meaning dissolves.",
+            "C) Because private sensations like pain or pleasure do not exist in the physical world.",
+            "D) Because grammatical rules of natural language are learned exclusively through behavioral imitation."
+        ],
+        "correct": "B",
+        "explanation": "Without external, public criteria, the speaker has no way to distinguish between actually applying a word correctly and merely thinking he is, which destroys normativity and meaning."
+    },
+    {
+        "id": "v_banach_tarski_en",
+        "type": "verbal",
+        "difficulty": "Hard",
+        "passage": "In measure theory, the Banach-Tarski paradox establishes that a solid 3D sphere can be decomposed into a finite number of non-overlapping pieces that, when reassembled via rigid motions, form two identical copies of the original sphere. This does not violate material physics because the pieces are non-measurable sets lacking defined volumes, whose existence depends on the Axiom of Choice.",
+        "question": "What mathematical reason explains the Banach-Tarski paradox according to the text?",
+        "options": [
+            "A) The direct violation of physical mass conservation in real three-dimensional solids.",
+            "B) The division of the sphere into pieces with extremely small decimal volume measurements.",
+            "C) The use of non-measurable sets that lack well-defined volumes under the Axiom of Choice.",
+            "D) The erroneous assumption that the pieces are rigid when they are actually flexible."
+        ],
+        "correct": "C",
+        "explanation": "The paradox operates mathematically using non-measurable sets that do not have a defined volume under the Axiom of Choice, meaning physical conservation laws do not apply."
+    },
+    {
+        "id": "v_sorites_vagueness_en",
+        "type": "verbal",
+        "difficulty": "Easy",
+        "passage": "The Sorites paradox (or paradox of the heap) arises from vague predicates in natural language. A heap of sand remains a heap if one grain is removed; repeating this logic leads to the absurd conclusion that a single grain forms a heap. The paradox exploits vagueness rather than ambiguity: removing one grain does not alter the state, but repetition does.",
+        "question": "What distinguishes vagueness from ambiguity in the context of the Sorites paradox?",
+        "options": [
+            "A) Vagueness means a term has multiple discrete meanings clarified by context.",
+            "B) Vagueness is characterized by imprecise boundaries and gradual transitions, whereas ambiguity involves multiple distinct meanings.",
+            "C) Vagueness is a logical flaw that supervaluationism completely removes from language.",
+            "D) There is no difference; both terms describe the exact same linguistic phenomenon."
+        ],
+        "correct": "B",
+        "explanation": "The passage explains that Sorites exploits vagueness—terms with imprecise, boundary-less transitions (like 'heap')—unlike ambiguity, which occurs when a word has several distinct meanings."
+    },
+    {
+        "id": "v_popper_tolerance_en",
+        "type": "verbal",
+        "difficulty": "Easy",
+        "passage": "Karl Popper's paradox of tolerance states that if a society is tolerant without limit, its ability to be tolerant will eventually be destroyed by the intolerant. Popper concluded that society should counter intolerant ideas with argument, but must claim the right to suppress them if the intolerant refuse rational debate and resort to force.",
+        "question": "When is refusing to tolerate the intolerant justified according to Karl Popper?",
+        "options": [
+            "A) As soon as they express opinions that offend members of the community.",
+            "B) Only when the intolerant refuse rational debate and resort to force.",
+            "C) Whenever their views begin influencing democratic election results.",
+            "D) Popper holds that intolerance is never justified under any circumstances."
+        ],
+        "correct": "B",
+        "explanation": "Popper sets a clear threshold: society should debate intolerant ideas peacefully, but retains the right to suppress intolerance when the intolerant reject rational dialogue and use force."
+    },
+    {
+        "id": "v_peter_principle_en",
+        "type": "verbal",
+        "difficulty": "Easy",
+        "passage": "In organizational sociology, the Peter Principle states that in a hierarchy, every employee tends to rise to their level of incompetence. This implies that higher-level positions become filled with incompetent individuals who previously performed well in simpler roles, causing systemic inefficiencies.",
+        "question": "What is the central claim of the Peter Principle?",
+        "options": [
+            "A) Good employees maintain excellence regardless of their position in the corporate hierarchy.",
+            "B) Workers tend to be promoted successively until reaching a position where they are incompetent.",
+            "C) Corporate training programs are useless in modern private enterprises.",
+            "D) Job promotions should be decided democratically by company employees."
+        ],
+        "correct": "B",
+        "explanation": "The principle holds that promotions are based on success in current roles rather than skills needed for the new position, stalling workers once they reach a job beyond their capability."
+    },
+    {
+        "id": "v_rawls_justice_en",
+        "type": "verbal",
+        "difficulty": "Medium",
+        "passage": "John Rawls proposed that principles of a just society should be agreed upon behind a 'veil of ignorance'. In this original position, no one knows their socioeconomic status, intelligence, gender, or talent. Rawls argues this guarantees impartiality, as agents will choose principles that protect the least advantaged.",
+        "question": "What function does the 'veil of ignorance' serve in Rawls's theory of justice?",
+        "options": [
+            "A) To hide government corruption from voters to prevent civil unrest.",
+            "B) To force lawmakers to ignore economic resource limits during budgeting.",
+            "C) To guarantee impartiality by concealing each agent's personal position in the future society.",
+            "D) To promote blind obedience to state directives."
+        ],
+        "correct": "C",
+        "explanation": "The veil of ignorance prevents self-interested decision-making by forcing agents to choose fair rules, knowing they could end up in the most vulnerable social position."
+    }
+]
+
+# Progress Persistence
 def load_progress():
     if os.path.exists(PROGRESS_FILE):
         try:
@@ -557,9 +538,9 @@ def load_progress():
         except:
             pass
     return {
-        "verbal": {"accuracy": 0.0, "difficulty": "Easy", "completed": 0, "correct_total": 0},
-        "numerical": {"accuracy": 0.0, "difficulty": "Easy", "completed": 0, "correct_total": 0},
-        "abstract": {"accuracy": 0.0, "difficulty": "Easy", "completed": 0, "correct_total": 0},
+        "verbal": {"accuracy": 0.0, "difficulty": "Medium", "completed": 0, "correct_total": 0},
+        "numerical": {"accuracy": 0.0, "difficulty": "Medium", "completed": 0, "correct_total": 0},
+        "abstract": {"accuracy": 0.0, "difficulty": "Medium", "completed": 0, "correct_total": 0},
         "failed_questions": []
     }
 
@@ -572,57 +553,50 @@ if "profile" not in st.session_state:
 
 if "current_test" not in st.session_state:
     st.session_state.current_test = None
-    st.session_state.test_mode = "practice_adaptive"
+    st.session_state.exam_mode = "AD5" # "AD5" or "Practice"
     st.session_state.test_questions = []
     st.session_state.current_index = 0
     st.session_state.answers = {}
-    st.session_state.flagged = set()
+    st.session_state.flags = {}
     st.session_state.eliminated = {}
-    st.session_state.review_mode = False
-    st.session_state.summary_grid_mode = False
-    st.session_state.selected_option = None
-    st.session_state.show_explanation = False
     st.session_state.start_time = None
-    st.session_state.time_limit = 0
-    st.session_state.scratchpad = ""
+    st.session_state.time_limit_sec = 0
+    st.session_state.review_mode = False
+    st.session_state.selected_option = None
 
-def start_new_test(category, mode="practice_adaptive", custom_length=None):
+def start_new_test(category, mode="AD5"):
     st.session_state.current_test = category
-    st.session_state.test_mode = mode
+    st.session_state.exam_mode = mode
     st.session_state.current_index = 0
     st.session_state.answers = {}
-    st.session_state.flagged = set()
+    st.session_state.flags = {}
     st.session_state.eliminated = {}
-    st.session_state.show_explanation = False
-    st.session_state.review_mode = False
-    st.session_state.summary_grid_mode = False
     st.session_state.selected_option = None
+    st.session_state.review_mode = False
     st.session_state.start_time = time.time()
     
-    if mode == "epso_ad5":
-        if category == "verbal":
-            test_length = 20
-            st.session_state.time_limit = 35 * 60
-        elif category == "numerical":
-            test_length = 10
-            st.session_state.time_limit = 20 * 60
-        else:
-            test_length = 10
-            st.session_state.time_limit = 10 * 60
-    else:
-        test_length = custom_length if custom_length else (20 if category == "verbal" else 10)
-        st.session_state.time_limit = 0
+    # EPSO AD5 Official Limits:
+    # Verbal: 20 questions in 35 min (2100 s)
+    # Numerical: 10 questions in 20 min (1200 s)
+    # Abstract: 10 questions in 10 min (600 s)
+    if category == "verbal":
+        test_length = 20
+        st.session_state.time_limit_sec = 2100 if mode == "AD5" else 1800
+    elif category == "numerical":
+        test_length = 10
+        st.session_state.time_limit_sec = 1200 if mode == "AD5" else 900
+    else: # abstract
+        test_length = 10
+        st.session_state.time_limit_sec = 600 if mode == "AD5" else 600
         
     profile = st.session_state.profile
-    user_diff = profile[category]["difficulty"]
-    
-    failed_pool = [q for q in profile["failed_questions"] if q["type"] == category]
     test_questions = []
     
+    # Recover failed questions for Spaced Repetition in practice mode
+    failed_pool = [q for q in profile["failed_questions"] if q["type"] == category]
     num_review = min(len(failed_pool), 3)
-    if num_review > 0:
-        sampled_failed = random.sample(failed_pool, num_review)
-        for q in sampled_failed:
+    if num_review > 0 and mode == "Practice":
+        for q in random.sample(failed_pool, num_review):
             q_copy = q.copy()
             q_copy["is_review"] = True
             test_questions.append(q_copy)
@@ -630,26 +604,21 @@ def start_new_test(category, mode="practice_adaptive", custom_length=None):
     needed = test_length - len(test_questions)
     
     if category == "verbal":
-        bank_pool = [q for q in VERBAL_BANK if q["difficulty"] == user_diff]
-        if len(bank_pool) < needed:
-            other_diffs = [q for q in VERBAL_BANK if q["difficulty"] != user_diff]
-            bank_pool += other_diffs
-        existing_ids = {q["id"] for q in test_questions}
-        available_pool = [q for q in bank_pool if q["id"] not in existing_ids]
-        if len(available_pool) < needed:
-            available_pool = VERBAL_BANK
-        selected_verbal = random.sample(available_pool, min(len(available_pool), needed))
-        test_questions.extend(selected_verbal)
-        
+        pool = list(VERBAL_BANK)
+        while len(pool) < needed:
+            pool.extend(VERBAL_BANK)
+        selected = random.sample(pool, needed)
+        test_questions.extend(selected)
     elif category == "numerical":
+        generators = [generate_numerical_patents, generate_numerical_palace]
         for _ in range(needed):
-            generator = random.choice([generate_numerical_patents, generate_numerical_palace])
-            test_questions.append(generator())
-            
-    elif category == "abstract":
+            gen = random.choice(generators)
+            test_questions.append(gen())
+    else: # abstract
+        generators = [generate_abstract_rotation_png, generate_abstract_side_progression_png, generate_abstract_grid_shift_png]
         for _ in range(needed):
-            generator = random.choice([generate_abstract_rotation_png, generate_abstract_side_progression_png, generate_abstract_grid_shift_png])
-            test_questions.append(generator())
+            gen = random.choice(generators)
+            test_questions.append(gen())
             
     random.shuffle(test_questions)
     st.session_state.test_questions = test_questions[:test_length]
@@ -663,45 +632,30 @@ def finish_active_test():
     correct_count = 0
     for i, q in enumerate(questions):
         user_ans = answers.get(i)
-        if user_ans == q["correct"]:
+        is_correct = (user_ans == q["correct"])
+        if is_correct:
             correct_count += 1
             profile["failed_questions"] = [fq for fq in profile["failed_questions"] if fq["id"] != q["id"]]
         else:
             if not any(fq["id"] == q["id"] for fq in profile["failed_questions"]):
-                profile["failed_questions"].append({
-                    "id": q["id"],
-                    "type": q["type"],
-                    "difficulty": q["difficulty"],
-                    "question": q["question"],
-                    "options": q["options"],
-                    "correct": q["correct"],
-                    "explanation": q["explanation"]
-                })
+                profile["failed_questions"].append(q)
                 
     profile[category]["completed"] += 1
     profile[category]["correct_total"] += correct_count
-    total_q = profile[category]["completed"] * len(questions)
+    total_q = profile[category]["completed"] * (20 if category == "verbal" else 10)
     profile[category]["accuracy"] = round((profile[category]["correct_total"] / max(1, total_q)) * 100, 1)
     
-    pct_correct = (correct_count / len(questions)) * 100
-    curr_diff = profile[category]["difficulty"]
-    if pct_correct >= 80:
-        profile[category]["difficulty"] = "Medium" if curr_diff == "Easy" else "Hard"
-    elif pct_correct < 50:
-        profile[category]["difficulty"] = "Medium" if curr_diff == "Hard" else "Easy"
-        
     st.session_state.profile = profile
     save_progress(profile)
     st.session_state.review_mode = True
-    st.session_state.summary_grid_mode = False
 
-# APP HEADER
+# UI - App Title
 st.title("🎯 EPSO AD5 Exam Simulator")
-st.caption("Official TAO Remote Testing Environment & Adaptive Practice Engine")
+st.caption("Official TAO Platform Rules & Adaptive Practice Tool")
 
-# DASHBOARD VIEW
+# DASHBOARD HOME
 if st.session_state.current_test is None:
-    st.subheader("Your Study & Performance Overview")
+    st.subheader("Your Study Progress")
     profile = st.session_state.profile
     
     col1, col2, col3 = st.columns(3)
@@ -710,7 +664,7 @@ if st.session_state.current_test is None:
         <div class="progress-card">
             <h4 style="margin:0;color:#4F46E5;">Verbal</h4>
             <p style="font-size:22px;font-weight:bold;margin:4px 0;">{profile['verbal']['accuracy']}%</p>
-            <span style="font-size:11px;background:#EEF2F6;padding:3px 8px;border-radius:12px;color:#4F46E5;font-weight:bold;">{profile['verbal']['difficulty']}</span>
+            <span style="font-size:11px;color:#6B7280;">20 Qs / 35 Min</span>
         </div>
         """, unsafe_allow_html=True)
     with col2:
@@ -718,7 +672,7 @@ if st.session_state.current_test is None:
         <div class="progress-card">
             <h4 style="margin:0;color:#059669;">Numerical</h4>
             <p style="font-size:22px;font-weight:bold;margin:4px 0;">{profile['numerical']['accuracy']}%</p>
-            <span style="font-size:11px;background:#ECFDF5;padding:3px 8px;border-radius:12px;color:#059669;font-weight:bold;">{profile['numerical']['difficulty']}</span>
+            <span style="font-size:11px;color:#6B7280;">10 Qs / 20 Min</span>
         </div>
         """, unsafe_allow_html=True)
     with col3:
@@ -726,137 +680,54 @@ if st.session_state.current_test is None:
         <div class="progress-card">
             <h4 style="margin:0;color:#D97706;">Abstract</h4>
             <p style="font-size:22px;font-weight:bold;margin:4px 0;">{profile['abstract']['accuracy']}%</p>
-            <span style="font-size:11px;background:#FEF3C7;padding:3px 8px;border-radius:12px;color:#D97706;font-weight:bold;">{profile['abstract']['difficulty']}</span>
+            <span style="font-size:11px;color:#6B7280;">10 Qs / 10 Min</span>
         </div>
         """, unsafe_allow_html=True)
         
-    failed_count = len(profile["failed_questions"])
-    if failed_count > 0:
-        st.info(f"🔄 **Spaced Repetition Active:** You have **{failed_count} questions in your review queue**. They will automatically reappear in your upcoming tests to reinforce weak concepts.")
-    else:
-        st.success("🎉 **All Concepts Mastered!** No failed questions currently in your review queue.")
-        
     st.markdown("---")
-    
     st.subheader("Select Exam Mode")
     
-    tab_epso, tab_practice = st.tabs(["🎯 Official EPSO AD5 Mock Exam", "🧠 Adaptive Practice Mode"])
+    mode_choice = st.radio("Choose Mode:", ["Official EPSO AD5 Mode (Strict Timers & TAO Tools)", "Adaptive Practice Mode (Free Pace)"], index=0)
+    selected_mode = "AD5" if "Official" in mode_choice else "Practice"
     
-    with tab_epso:
-        st.markdown("""
-        **Official EPSO AD5 Testing Parameters (TAO Platform):**
-        - **Verbal Reasoning:** 20 Questions | **35 Minutes** (105s / q)
-        - **Numerical Reasoning:** 10 Questions | **20 Minutes** (120s / q)
-        - **Abstract Reasoning:** 10 Questions | **10 Minutes** (60s / q)
+    st.markdown("<div style='margin-bottom:15px;'></div>", unsafe_allow_html=True)
+    
+    if st.button("💬 Start Verbal Reasoning (20 Questions - 35 Min)"):
+        start_new_test("verbal", selected_mode)
+        st.rerun()
         
-        *Includes official countdown timer, scratchpad notes, question flagging, and option eliminator.*
-        """)
+    st.markdown("<div style='margin-bottom:10px;'></div>", unsafe_allow_html=True)
+    if st.button("📊 Start Numerical Reasoning (10 Questions - 20 Min)"):
+        start_new_test("numerical", selected_mode)
+        st.rerun()
         
-        if st.button("💬 Start EPSO Verbal Reasoning (35 Min)"):
-            start_new_test("verbal", mode="epso_ad5")
-            st.rerun()
-            
-        st.markdown("<div style='margin-bottom:8px;'></div>", unsafe_allow_html=True)
-        if st.button("📊 Start EPSO Numerical Reasoning (20 Min)"):
-            start_new_test("numerical", mode="epso_ad5")
-            st.rerun()
-            
-        st.markdown("<div style='margin-bottom:8px;'></div>", unsafe_allow_html=True)
-        if st.button("🧩 Start EPSO Abstract Reasoning (10 Min)"):
-            start_new_test("abstract", mode="epso_ad5")
-            st.rerun()
-            
-    with tab_practice:
-        st.markdown("Practice at your own pace without timer constraints. The engine adapts difficulty based on your real-time performance.")
-        
-        c_len, c_diff = st.columns(2)
-        with c_len:
-            custom_q_len = st.selectbox("Test Length:", [10, 20, 30], index=0)
-            
-        if st.button("💬 Practice Verbal Reasoning"):
-            start_new_test("verbal", mode="practice_adaptive", custom_length=custom_q_len)
-            st.rerun()
-            
-        st.markdown("<div style='margin-bottom:8px;'></div>", unsafe_allow_html=True)
-        if st.button("📊 Practice Numerical Reasoning"):
-            start_new_test("numerical", mode="practice_adaptive", custom_length=custom_q_len)
-            st.rerun()
-            
-        st.markdown("<div style='margin-bottom:8px;'></div>", unsafe_allow_html=True)
-        if st.button("🧩 Practice Abstract Reasoning"):
-            start_new_test("abstract", mode="practice_adaptive", custom_length=custom_q_len)
-            st.rerun()
+    st.markdown("<div style='margin-bottom:10px;'></div>", unsafe_allow_html=True)
+    if st.button("🧩 Start Abstract Reasoning (10 Questions - 10 Min)"):
+        start_new_test("abstract", selected_mode)
+        st.rerun()
 
-# TAO SUMMARY GRID VIEW
-elif st.session_state.summary_grid_mode:
-    questions = st.session_state.test_questions
-    answers = st.session_state.answers
-    flagged = st.session_state.flagged
-    
-    st.subheader("📋 TAO Exam Review Summary")
-    st.markdown("Review your question status before submitting your test:")
-    
-    cols = st.columns(5)
-    for idx, q in enumerate(questions):
-        c = cols[idx % 5]
-        is_ans = idx in answers
-        is_flag = idx in flagged
-        
-        status_str = "✅ Ans" if is_ans else "⚪ Unans"
-        if is_flag:
-            status_str += " 🚩"
-            
-        with c:
-            if st.button(f"Q{idx+1}\n{status_str}", key=f"grid_btn_{idx}"):
-                st.session_state.current_index = idx
-                st.session_state.summary_grid_mode = False
-                st.rerun()
-                
-    st.markdown("---")
-    col_sub, col_ret = st.columns(2)
-    with col_sub:
-        if st.button("🚨 Final Submit Test"):
-            finish_active_test()
-            st.rerun()
-    with col_ret:
-        if st.button("⬅️ Return to Question"):
-            st.session_state.summary_grid_mode = False
-            st.rerun()
-
-# REVIEW MODE
+# TEST REVIEW / RESULTS SCREEN
 elif st.session_state.review_mode:
-    category = st.session_state.current_test
     questions = st.session_state.test_questions
     answers = st.session_state.answers
-    
     correct_count = sum(1 for i, q in enumerate(questions) if answers.get(i) == q["correct"])
     pct = int((correct_count / len(questions)) * 100)
     
-    st.markdown("### Test Completed!")
-    
-    color_score = "#16A34A" if pct >= 70 else "#DC2626"
+    st.subheader("Exam Results & Detailed Solutions")
     st.markdown(f"""
     <div style="background-color: #F9FAFB; padding: 20px; border-radius: 16px; border: 2px solid #E5E7EB; text-align: center; margin-bottom: 20px;">
-        <span style="font-size: 13px; color: #6B7280; font-weight: bold; text-transform: uppercase;">Official Test Score</span>
-        <h1 style="color: {color_score}; font-size: 46px; margin: 4px 0;">{correct_count} / {len(questions)}</h1>
-        <p style="font-size: 18px; font-weight: bold; margin: 0;">Accuracy: {pct}%</p>
+        <span style="font-size: 13px; color: #6B7280; font-weight: bold; text-transform: uppercase;">Final Score</span>
+        <h1 style="color: {'#16A34A' if pct>=60 else '#DC2626'}; font-size: 42px; margin: 5px 0;">{correct_count} / {len(questions)}</h1>
+        <p style="font-size: 16px; font-weight: bold; margin: 0;">Accuracy: {pct}%</p>
     </div>
     """, unsafe_allow_html=True)
-    
-    if pct >= 70:
-        st.success("🌟 **Pass Benchmark Reached!** Excellent logical deduction and time management.")
-    else:
-        st.warning("⚠️ **Pass Benchmark Not Met.** Review the detailed explanations below to strengthen weak concepts.")
-        
-    st.markdown("---")
-    st.markdown("### Question Breakdown & Detailed Explanations")
     
     for i, q in enumerate(questions):
         user_ans = answers.get(i)
         is_correct = (user_ans == q["correct"])
-        icon = "✅ Correct" if is_correct else f"❌ Incorrect (You chose {user_ans if user_ans else 'Blank'})"
+        status_str = "✅ Correct" if is_correct else f"❌ Incorrect (You chose {user_ans if user_ans else 'Blank'})"
         
-        with st.expander(f"Question {i+1}: {icon}"):
+        with st.expander(f"Question {i+1}: {status_str}"):
             if "passage" in q and q["passage"]:
                 st.markdown(f"<div class='passage-box'>{q['passage']}</div>", unsafe_allow_html=True)
             if "table" in q and q["table"]:
@@ -866,130 +737,96 @@ elif st.session_state.review_mode:
                 
             st.markdown(f"**Question:** {q['question']}")
             for opt in q["options"]:
-                letter = opt[0]
-                if letter == q["correct"]:
+                if opt == q["correct"]:
                     st.write(f"🟢 **{opt} (Correct Answer)**")
-                elif letter == user_ans:
-                    st.write(f"🔴 **{opt} (Your Choice)**")
+                elif opt == user_ans:
+                    st.write(f"🔴 **{opt} (Your Selection)**")
                 else:
                     st.write(f"⚪ {opt}")
-                    
             st.markdown(q["explanation"])
             
-    st.markdown("<div style='margin-bottom:15px;'></div>", unsafe_allow_html=True)
     if st.button("⬅️ Return to Main Menu"):
         st.session_state.current_test = None
         st.session_state.review_mode = False
         st.rerun()
 
-# ACTIVE QUESTION VIEW
+# ACTIVE QUESTION SCREEN
 else:
     category = st.session_state.current_test
     questions = st.session_state.test_questions
     idx = st.session_state.current_index
     q = questions[idx]
     
-    if st.session_state.test_mode == "epso_ad5":
-        elapsed = time.time() - st.session_state.start_time
-        remaining = max(0, int(st.session_state.time_limit - elapsed))
-        mins, secs = divmod(remaining, 60)
+    # Calculate Timer
+    elapsed = int(time.time() - st.session_state.start_time)
+    rem_sec = max(0, st.session_state.time_limit_sec - elapsed)
+    mins, secs = divmod(rem_sec, 60)
+    
+    # Top Header Bar
+    col_t1, col_t2 = st.columns([2, 1])
+    with col_t1:
+        st.markdown(f"**{category.upper()} REASONING** — Question **{idx+1} of {len(questions)}**")
+    with col_t2:
+        st.markdown(f"<div class='timer-badge'>⏱️ {mins:02d}:{secs:02d}</div>", unsafe_allow_html=True)
         
-        if remaining == 0:
-            st.error("⏰ **Time's Up!** Auto-submitting your exam...")
-            finish_active_test()
-            st.rerun()
-            
-        t_col1, t_col2 = st.columns([2, 1])
-        with t_col1:
-            st.markdown(f"**EPSO AD5 {category.upper()} EXAM**")
-        with t_col2:
-            st.markdown(f"<div class='timer-badge'>⏱️ {mins:02d}:{secs:02d}</div>", unsafe_allow_html=True)
-            
     st.progress((idx + 1) / len(questions))
     
-    col_f, col_e, col_s = st.columns(3)
-    with col_f:
-        is_flagged = idx in st.session_state.flagged
-        flag_label = "🚩 Flagged" if is_flagged else "🏳️ Flag for Review"
-        if st.button(flag_label, key=f"flag_btn_{idx}"):
-            if is_flagged:
-                st.session_state.flagged.remove(idx)
-            else:
-                st.session_state.flagged.add(idx)
-            st.rerun()
-            
-    with col_e:
-        elim_list = st.session_state.eliminated.get(idx, [])
-        st.caption(f"✂️ Eliminated: {', '.join(elim_list) if elim_list else 'None'}")
+    # Flag for review button
+    is_flagged = st.session_state.flags.get(idx, False)
+    if st.checkbox("🚩 Flag for Review", value=is_flagged, key=f"flag_{idx}"):
+        st.session_state.flags[idx] = True
+    else:
+        st.session_state.flags[idx] = False
         
-    with col_s:
-        with st.popover("🧮 E-Tools"):
-            st.markdown("**TAO Scratchpad & Calculator Tool:**")
-            st.text_area("Scratchpad Notes:", key=f"scratch_{idx}", value=st.session_state.scratchpad)
-            
-    st.markdown("---")
-    
-    if "passage" in q and q["passage"]:
-        st.markdown(f"<div class='passage-box'>{q['passage']}</div>", unsafe_allow_html=True)
-    if "table" in q and q["table"]:
-        st.markdown(q["table"])
-    if "img_bytes" in q and q["img_bytes"]:
-        st.image(q["img_bytes"], use_container_width=True)
-        
-    st.markdown(f"### Question {idx+1} of {len(questions)}")
-    st.markdown(f"**{q['question']}**")
-    
-    options_list = q["options"]
-    curr_elim = st.session_state.eliminated.get(idx, [])
-    
-    st.markdown("**Option Eliminator (Strike out distractors):**")
-    e_cols = st.columns(len(options_list))
-    for opt_idx, opt_str in enumerate(options_list):
-        letter = opt_str[0]
-        with e_cols[opt_idx]:
-            is_elim = letter in curr_elim
-            btn_txt = f"❌ {letter}" if is_elim else f"✂️ {letter}"
-            if st.button(btn_txt, key=f"elim_{idx}_{letter}"):
-                if is_elim:
-                    curr_elim.remove(letter)
-                else:
-                    curr_elim.append(letter)
-                st.session_state.eliminated[idx] = curr_elim
-                st.rerun()
-                
     st.markdown("<div style='margin-bottom:10px;'></div>", unsafe_allow_html=True)
     
-    user_choice = st.radio(
+    # Display Content
+    if "passage" in q and q["passage"]:
+        st.markdown("**Reading Passage:**")
+        st.markdown(f"<div class='passage-box'>{q['passage']}</div>", unsafe_allow_html=True)
+        
+    if "table" in q and q["table"]:
+        st.markdown("**Data Table:**")
+        st.markdown(q["table"])
+        
+    if "img_bytes" in q and q["img_bytes"]:
+        st.markdown("**Abstract Visual Sequence:**")
+        st.image(q["img_bytes"], use_container_width=True)
+        
+    st.markdown(f"### {q['question']}")
+    
+    # Options Radio Selector
+    options_list = q["options"]
+    current_sel = st.session_state.answers.get(idx, None)
+    selected_idx = options_list.index(current_sel) if current_sel in options_list else None
+    
+    choice = st.radio(
         "Select your answer:",
         options=options_list,
-        index=None if idx not in st.session_state.answers else [o[0] for o in options_list].index(st.session_state.answers[idx]),
-        key=f"radio_choice_{idx}"
+        index=selected_idx,
+        key=f"radio_q_{idx}"
     )
     
-    if user_choice:
-        st.session_state.answers[idx] = user_choice[0]
+    if choice:
+        st.session_state.answers[idx] = choice
         
     st.markdown("<div style='margin-bottom:15px;'></div>", unsafe_allow_html=True)
     
-    nav_col1, nav_col2, nav_col3 = st.columns(3)
-    
-    with nav_col1:
-        if idx > 0:
-            if st.button("⬅️ Previous"):
-                st.session_state.current_index -= 1
-                st.rerun()
-                
-    with nav_col2:
-        if st.button("📋 Review Summary"):
-            st.session_state.summary_grid_mode = True
+    # Navigation Buttons
+    c_prev, c_next, c_sub = st.columns([1, 1, 1])
+    with c_prev:
+        if idx > 0 and st.button("⬅️ Previous"):
+            st.session_state.current_index -= 1
+            st.rerun()
+    with c_next:
+        if idx + 1 < len(questions) and st.button("Next ➡️"):
+            st.session_state.current_index += 1
+            st.rerun()
+    with c_sub:
+        if st.button("🏁 Finish Exam"):
+            finish_active_test()
             st.rerun()
             
-    with nav_col3:
-        if idx + 1 < len(questions):
-            if st.button("Next ➡️"):
-                st.session_state.current_index += 1
-                st.rerun()
-        else:
-            if st.button("🚨 Finish Test"):
-                st.session_state.summary_grid_mode = True
-                st.rerun()
+    # E-Tools Scratchpad Expander
+    with st.expander("🛠️ TAO E-Tools: Scratchpad / Notes"):
+        st.text_area("Use this area for rough calculations or text notes:", height=100, key=f"scratch_{idx}")
